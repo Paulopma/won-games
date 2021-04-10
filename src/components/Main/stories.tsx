@@ -13,6 +13,7 @@ export default {
 export const Basic: Story = (args) => <Main {...args} />
 
 export const Default: Story = (args) => <Main {...args} />
+
 Default.args = {
   title: 'title default',
   description: 'description default'
