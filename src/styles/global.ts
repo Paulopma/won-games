@@ -1,29 +1,32 @@
 import { createGlobalStyle, css } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
+  
   @font-face {
-    font-family: 'Poppins';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 300;
-    font-swap: swap;
+    font-display: swap;
     src: local(''),
-        url('/fonts/poppins-v15-latin-300.woff2') format('woff2'),
+        url('../fonts/montserrat-v15-latin-300.woff2') format('woff2'),
   }
+
   @font-face {
-    font-family: 'Poppins';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-swap: swap;
+    font-display: swap;
     src: local(''),
-        url('/fonts/poppins-v15-latin-regular.woff2') format('woff2'),
+        url('../fonts/montserrat-v15-latin-regular.woff2') format('woff2'),
   }
+
   @font-face {
-    font-family: 'Poppins';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
-    font-swap: swap;
+    font-display: swap;
     src: local(''),
-      url('/fonts/poppins-v15-latin-600.woff2') format('woff2');
+        url('../fonts/montserrat-v15-latin-600.woff2') format('woff2'),
   }
 
   *{
@@ -46,5 +49,4 @@ const GlobalStyles = createGlobalStyle`
   `}
 
 `
-
 export default GlobalStyles

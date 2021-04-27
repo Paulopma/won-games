@@ -16,15 +16,20 @@ export default {
 } as Meta
 
 export const Basic: Story = (args) => <Button {...args} />
-
 Basic.args = {
-  children: 'Buy now'
+  children: 'Inscreva-se'
 }
 
 export const withIcon: Story = (args) => <Button {...args} />
-
 withIcon.args = {
   size: 'small',
-  children: 'Buy now',
+  children: 'Inscreva-se',
   icon: <AddShoppingCart />
+}
+
+export const asLink: Story = (args) => <Button {...args} />
+asLink.args = {
+  children: 'Inscreva-se',
+  as: 'a',
+  href: '/link'
 }

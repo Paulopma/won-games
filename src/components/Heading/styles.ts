@@ -1,46 +1,143 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import media from 'styled-media-query'
-import { HeadingProps, LineColors } from '.'
+import { HeadingBoldColors, HeadingProps } from '.'
 
 const wrapperModifiers = {
-  small: (theme: DefaultTheme) => css`
-    font-size: ${theme.font.sizes.medium};
-    &::after {
-      width: 3rem;
+  boldColors: (theme: DefaultTheme, boldColors: HeadingBoldColors) => css`
+    strong {
+      font-weight: ${theme.font.bold};
+      color: ${theme.colors[boldColors]};
+    }
+
+    a {
+      font-weight: ${theme.font.bold};
+      color: ${theme.colors[boldColors]};
+      text-decoration: none;
     }
   `,
-  medium: (theme: DefaultTheme) => css`
-    font-size: ${theme.font.sizes.xlarge};
-
-    ${media.greaterThan('medium')`
-      font-size: ${theme.font.sizes.xxlarge}
-    `};
-  `,
-  lineLeft: (theme: DefaultTheme, lineColor: LineColors) => css`
-    padding-left: ${theme.spacings.xxsmall};
-    border-left: 0.7rem solid ${theme.colors[lineColor]};
-  `,
-  lineBottom: (theme: DefaultTheme, lineColor: LineColors) => css`
+  rainbowBox: (theme: DefaultTheme) => css`
+    padding: ${theme.spacings.small};
+    text-align: center;
+    width: fit-content;
     position: relative;
-    margin-bottom: ${theme.spacings.medium};
 
-    &::after {
+    display: flex;
+    align-items: center;
+    &:after {
       content: '';
       position: absolute;
-      width: 5rem;
+      top: 7px;
       left: 0;
-      bottom: -1rem;
-      border-bottom: 0.5rem solid ${theme.colors[lineColor]};
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        120deg,
+        ${theme.colors.primary},
+        ${theme.colors.tertiary},
+        ${theme.colors.secondary}
+      );
+      background-size: 300%;
+
+      @keyframes gradient-animation {
+        0% {
+          background-position: 15% 0%;
+        }
+        50% {
+          background-position: 85% 100%;
+        }
+        100% {
+          background-position: 15% 0%;
+        }
+      }
+
+      @keyframes frame-enter {
+        0% {
+          clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) calc(100% - 3px),
+            3px calc(100% - 3px),
+            3px 100%,
+            100% 100%,
+            100% 0%,
+            0% 0%
+          );
+        }
+        25% {
+          clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) calc(100% - 3px),
+            calc(100% - 3px) calc(100% - 3px),
+            calc(100% - 3px) 100%,
+            100% 100%,
+            100% 0%,
+            0% 0%
+          );
+        }
+        50% {
+          clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            calc(100% - 3px) 3px,
+            100% 0%,
+            0% 0%
+          );
+        }
+        75% {
+          -webkit-clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 3px,
+            3px 0%,
+            0% 0%
+          );
+        }
+        100% {
+          -webkit-clip-path: polygon(
+            0% 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            3px 100%,
+            0% 100%
+          );
+        }
+      }
+      animation: frame-enter 1s forwards ease-in-out reverse,
+        gradient-animation 3s ease-in-out infinite;
     }
   `
 }
 
 export const Wrapper = styled.h2<HeadingProps>`
-  ${({ theme, color, lineLeft, lineBottom, lineColor, size }) => css`
+  ${({ theme, color, boldColor, rainbowBox }) => css`
+    font-size: ${theme.font.sizes.large};
     color: ${theme.colors[color!]};
 
-    ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor!)}
-    ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor!)}
-    ${!!size && wrapperModifiers[size](theme)}
+    ${media.greaterThan('medium')`
+      font-size: ${theme.font.sizes.xxlarge}
+    `};
+
+    ${!!rainbowBox && wrapperModifiers.rainbowBox(theme)}
+    ${!!boldColor && wrapperModifiers.boldColors(theme, boldColor)}
   `}
 `

@@ -10,13 +10,13 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <ThemeProvider theme={theme}>
         <Head>
-          <title>React / NextJS - Boilerplate</title>
-          <link rel="shortcut icon" href="/img/icon-512.png" />
-          <link rel="apple-touch-icon icon" href="/img/icon-512.png" />
+          <title>B4A - Beauty For All</title>
+          <link rel="shortcut icon" href="/img/favicon.png" />
+          <link rel="apple-touch-icon icon" href="/img/favicon.png" />
           <link rel="manifest" href="/manifest.json" />
           <meta
             name="description"
-            content="A project starter with TS, React, NextJS and Styled Components"
+            content="Através da tecnologia, democratizamos o acesso à beleza, promovendo impacto social positivo."
           />
         </Head>
         <Component {...pageProps} />

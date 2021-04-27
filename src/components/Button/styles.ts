@@ -1,24 +1,18 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { ButtonProps } from '.'
+import { ButtonColors, ButtonProps } from '.'
+import { darken } from 'polished'
 
 type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size' | 'fullWidth'> //podemos tb usar Omit<ButtonProps, 'children'>
+} & Pick<ButtonProps, 'color' | 'fullWidth'> //podemos tb usar Omit<ButtonProps, 'children'>
 
 const wrapperModifiers = {
-  small: (theme: DefaultTheme) => css`
-    height: 3rem;
-    font-size: ${theme.font.sizes.xsmall};
-  `,
-  medium: (theme: DefaultTheme) => css`
-    height: 4rem;
-    font-size: ${theme.font.sizes.small};
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.medium};
-  `,
-  large: (theme: DefaultTheme) => css`
-    height: 5rem;
-    font-size: ${theme.font.sizes.medium};
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
+  color: (theme: DefaultTheme, color: ButtonColors) => css`
+    background: ${theme.colors[color]};
+
+    &:hover {
+      background: ${darken(0.1, theme.colors[color])};
+    }
   `,
   fullWidth: () => css`
     width: 100%;
@@ -39,15 +33,20 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullWidth, hasIcon }) => css`
-    background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
+  ${({ theme, color, fullWidth, hasIcon }) => css`
+    height: 5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: ${theme.colors.white};
+    font-family: ${theme.font.family};
+    font-size: ${theme.font.sizes.medium};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.xxlarge};
+    text-decoration: none;
     border: none;
-    border-radius: ${theme.border.radius};
-    padding: ${theme.spacings.xxsmall};
     cursor: pointer;
 
-    ${!!size && wrapperModifiers[size](theme)}
+    ${!!color && wrapperModifiers.color(theme, color)}
     ${!!fullWidth && wrapperModifiers.fullWidth()}
     ${!!hasIcon && wrapperModifiers.withIcon(theme)}
   `}

@@ -5,50 +5,79 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import { AddShoppingCart } from '@styled-icons/material-outlined/AddShoppingCart'
 
 describe('<Button/>', () => {
-  it('should render the medium size by default', () => {
-    const { container } = renderWithTheme(<Button>Buy now</Button>)
+  it('should render the correct size by default', () => {
+    const { container } = renderWithTheme(<Button>inscreva-se</Button>)
 
-    expect(screen.getByRole('button', { name: /Buy now/i })).toHaveStyle({
-      height: '4rem',
-      padding: '0.8rem 3.2rem',
-      fontSize: '1.4rem'
+    expect(screen.getByRole('button', { name: /inscreva-se/i })).toHaveStyle({
+      height: '5rem',
+      padding: '0.8rem 5.6rem',
+      fontSize: '1.8rem'
     })
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('should render the small size by if small is passed', () => {
-    renderWithTheme(<Button size="small">Buy now</Button>)
+  it('should render the primary color by default', () => {
+    renderWithTheme(<Button>inscreva-se</Button>)
 
-    expect(screen.getByRole('button', { name: /Buy now/i })).toHaveStyle({
-      height: '3rem',
-      fontSize: '1.2rem'
+    expect(screen.getByRole('button', { name: /inscreva-se/i })).toHaveStyle({
+      backgroundColor: '#FF005C'
     })
   })
 
-  it('should render the small size by if large is passed', () => {
-    renderWithTheme(<Button size="large">Buy now</Button>)
+  it('should render the secondary color if passed', () => {
+    renderWithTheme(<Button color="secondary">inscreva-se</Button>)
 
-    expect(screen.getByRole('button', { name: /Buy now/i })).toHaveStyle({
-      height: '5rem',
-      fontSize: '1.6rem',
-      padding: '0.8rem 4.8rem'
+    expect(screen.getByRole('button', { name: /inscreva-se/i })).toHaveStyle({
+      backgroundColor: '#00AAFF'
+    })
+  })
+
+  it('should render the tertiary color if passed', () => {
+    renderWithTheme(<Button color="tertiary">inscreva-se</Button>)
+
+    expect(screen.getByRole('button', { name: /inscreva-se/i })).toHaveStyle({
+      backgroundColor: '#7F55AE'
     })
   })
 
   it('should render full width size if fullWidth is passed', () => {
-    renderWithTheme(<Button fullWidth>Buy now</Button>)
+    renderWithTheme(<Button fullWidth>inscreva-se</Button>)
 
-    expect(screen.getByRole('button', { name: /Buy now/i })).toHaveStyle({
+    expect(screen.getByRole('button', { name: /inscreva-se/i })).toHaveStyle({
       width: '100%'
     })
   })
 
   it('should render an icon version if icon is passed', () => {
     renderWithTheme(
-      <Button icon={<AddShoppingCart data-testid="icon" />}>Buy now</Button>
+      <Button icon={<AddShoppingCart data-testid="icon" />}>inscreva-se</Button>
     )
 
-    expect(screen.getByText(/buy now/i)).toBeInTheDocument()
+    expect(screen.getByText(/inscreva-se/i)).toBeInTheDocument()
     expect(screen.getByTestId('icon')).toBeInTheDocument()
+  })
+
+  it('should render an icon version if icon is passed', () => {
+    renderWithTheme(
+      <Button icon={<AddShoppingCart data-testid="icon" />}>inscreva-se</Button>
+    )
+
+    expect(screen.getByText(/inscreva-se/i)).toBeInTheDocument()
+    expect(screen.getByTestId('icon')).toBeInTheDocument()
+  })
+
+  it('should render Button as a link', () => {
+    const { debug, container } = renderWithTheme(
+      <Button as="a" href="/link">
+        inscreva-se
+      </Button>
+    )
+
+    debug(container)
+
+    expect(screen.getByRole('link', { name: /inscreva-se/i })).toHaveAttribute(
+      'href',
+      '/link'
+    )
   })
 })
