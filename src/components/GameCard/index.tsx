@@ -7,12 +7,12 @@ import Button from 'components/Button'
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 import * as S from './styles'
 
-export type gameCardProps = {
+export type GameCardProps = {
   title: string
   developer: string
   img: string
-  price: string
-  promotionalPrice?: string
+  price: number
+  promotionalPrice?: number
   favorite?: boolean
   onFav?: () => void
   ribbon?: React.ReactNode
@@ -31,7 +31,7 @@ const GameCard = ({
   ribbon,
   ribbonColor = 'primary',
   ribbonSize = 'small'
-}: gameCardProps) => (
+}: GameCardProps) => (
   <S.Wrapper>
     {ribbon && (
       <Ribbon color={ribbonColor} size={ribbonSize}>
