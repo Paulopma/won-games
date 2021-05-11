@@ -133,13 +133,11 @@ exports[`<Banner/> should render correctly 1`] = `
     <h3
       class="c4"
     >
-      <p>
-        Play the new 
-        <strong>
-          CrashLands
-        </strong>
-         season
-      </p>
+      Play the new 
+      <strong>
+        CrashLands
+      </strong>
+       season
     </h3>
     <a
       class="c5"

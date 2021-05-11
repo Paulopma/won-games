@@ -1,4 +1,3 @@
-import React, { ReactFragment } from 'react'
 import * as S from './styles'
 import Button from 'components/Button'
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
@@ -6,7 +5,7 @@ import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 export type BannerProps = {
   img: string
   title: string
-  subtitle: ReactFragment
+  subtitle: string
   buttonLabel: string
   buttonLink: string
   ribbon?: string
@@ -33,7 +32,7 @@ const Banner = ({
     <S.Image src={img} role="img" aria-label={title} />
     <S.Caption>
       <S.Title>{title}</S.Title>
-      <S.Subtitle>{subtitle}</S.Subtitle>
+      <S.Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
       <Button as="a" href={buttonLink} size="large">
         {buttonLabel}
       </Button>
