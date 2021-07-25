@@ -21,7 +21,7 @@ const props = {
 }
 
 describe('<Home/>', () => {
-  it('should render menu and footer', () => {
+  it('should render menu, sections and footer', () => {
     renderWithTheme(<Home {...props} />)
 
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
