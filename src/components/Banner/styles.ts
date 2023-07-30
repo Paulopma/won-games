@@ -25,7 +25,7 @@ type ImageProps = {
 
 export const Image = styled.div<ImageProps>`
   ${({ theme, src }) => css`
-    width: 90%;
+    width: 80%;
     height: 21rem;
     background-color: ${theme.colors.lightGray};
     background-image: url(${src});
